@@ -1,4 +1,4 @@
-<h1>Live Demo</h1>
+<h1>Live Demo - https://pritish1510.github.io/StockSphere/</h1>
 # 🛒 StockSphere  
 
 **StockSphere** is a modern web-based inventory and billing management application tailored for small to medium-sized businesses. It empowers users with intuitive inventory control, billing capabilities, and more.
