@@ -172,7 +172,7 @@ function generateInvoice() {
     // Invoice Details
     const companyInfo = `
         <h2>StockSphere</h2>
-        <p>Address: Dronacharya Group of institution</p>
+        <p>Address: Fortune</p>
         <p>Contact: 99xxxxxx09/ email@StockSphere.com</p>
     `;
 
