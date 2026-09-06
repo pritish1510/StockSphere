@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockSphere</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Simple Login Page -->
+    <div id="loginPage">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Enter username">
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="login()">Login</button>
+        <p id="loginMessage"></p>
+    </div>
+
+    <!-- Main Content Area -->
+    <div id="mainContent" style="display:none;">
+        <!-- Tabs for Navigation -->
+        <div class="tab">
+            <button onclick="openTab(event, 'Inventory')">Inventory</button>
+            <button onclick="openTab(event, 'ProductList')">Product List</button>
+            <button onclick="openTab(event, 'Billing')">Billing</button>
+            <button onclick="exportToExcel()">Export Data</button>
+        </div>
+
+        <!-- Inventory Tab -->
+        <div id="Inventory" class="tabcontent" style="display:none;">
+            <h2>Manage Inventory</h2>
+            <input type="text" id="productName" placeholder="Product Name">
+            <input type="number" id="productPrice" placeholder="Price">
+            <input type="number" id="productQuantity" placeholder="Quantity">
+            <input type="date" id="expiryDate" placeholder="Expiry Date">
+            <button onclick="addProduct()">Add Product</button>
+        </div>
+
+        <!-- Product List Tab -->
+        <div id="ProductList" class="tabcontent" style="display:none;">
+            <h2>Product List</h2>
+            <input type="text" id="searchProduct" placeholder="Search" oninput="searchProducts()">
+            <table id="productTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Expiry Date</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- Billing Tab -->
+        <div id="Billing" class="tabcontent" style="display:none;">
+            <h2>Billing</h2>
+            <h3>Client Information</h3>
+            <input type="text" id="clientName" placeholder="Client Name">
+            <input type="text" id="clientAddress" placeholder="Client Address">
+            <input type="text" id="clientContact" placeholder="Client Contact Info">
+            <select id="billingProductDropdown">
+                <option value="" disabled selected>Select Product</option>
+            </select>
+            <input type="number" id="billingQuantity" placeholder="Quantity">
+            <button onclick="addToBill()">Add to Bill</button>
+            <h3>Bill</h3>
+            <ul id="billList"></ul>
+            <p>Subtotal: ₹<span id="subtotalAmount">0</span></p>
+            <p>Taxes: ₹<span id="taxAmount">0</span></p>
+            <p>Total: ₹<span id="totalAmount">0</span></p>
+            <button onclick="generateInvoice()">Generate Invoice</button>
+            <div id="invoiceSection" style="display: none;">
+                <h3>Generated Invoice</h3>
+                <div id="invoiceContent"></div>
+                <button onclick="printInvoice()">Print Invoice</button>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+

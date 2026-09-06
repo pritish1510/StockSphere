@@ -1,0 +1,243 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #231c9e;
+    color: #333;
+}
+
+#loginPage, #mainContent {
+    margin: 150px auto;
+    padding: 50px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 600px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#loginPage:hover, #mainContent:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Tab Navigation */
+.tab {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.tab button {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.tab button:hover {
+    background-color: #bbb;
+    transform: translateY(-2px);
+}
+
+.tab button.active {
+    background-color: #008cba;
+    color: #fff;
+}
+
+/* Content Sections */
+.tabcontent {
+    display: none;
+    margin-top: 10px;
+}
+
+.tabcontent.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Forms */
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus, button:focus {
+    border-color: #008cba;
+    outline: none;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #008cba;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Filters Section */
+#filters {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#filters label {
+    flex: 1 1 100%;
+    font-weight: bold;
+}
+
+#filters input, #filters select {
+    flex: 1 1 calc(50% - 15px);
+    min-width: 120px;
+}
+
+/* Button Animations */
+button {
+    cursor: pointer;
+    background-color: #008cba;
+    color: white;
+    border: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #005f80;
+    transform: scale(1.05);
+}
+
+/* Theme Support */
+body.dark-theme {
+    background-color: #1e1e1e;
+    color: #f4f4f4;
+}
+
+body.dark-theme input, body.dark-theme select, body.dark-theme button {
+    background-color: #333;
+    color: #f4f4f4;
+    border: 1px solid #555;
+}
+
+body.light-theme input, body.light-theme select, body.light-theme button {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    #loginPage, #mainContent {
+        width: 100%;
+        max-width: none;
+    }
+
+    .tab {
+        flex-direction: column;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    table th, table td {
+        padding: 8px;
+    }
+
+    #filters {
+        gap: 10px;
+    }
+
+    #filters input, #filters select {
+        flex: 1 1 calc(100% - 20px);
+    }
+}
+/* Buttons with hover effect */
+button {
+    cursor: pointer;
+    background: linear-gradient(90deg, #1e90ff, #00c6ff);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(90deg, #00c6ff, #1e90ff);
+}
+#invoiceSection {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#invoiceTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#invoiceTable th, #invoiceTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#invoiceTable th {
+    background-color: #008cba;
+    color: white;
+}
+
