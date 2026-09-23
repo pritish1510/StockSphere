@@ -7,83 +7,128 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Simple Login Page -->
-    <div id="loginPage">
+    <div id="loginPage" class="panel">
+        <h1>StockSphere</h1>
         <h2>Login</h2>
-        <input type="text" id="username" placeholder="Enter username">
-        <input type="password" id="password" placeholder="Enter password">
-        <button onclick="login()">Login</button>
-        <p id="loginMessage"></p>
+        <form id="loginForm" onsubmit="login(event)">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter username" autocomplete="username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter password" autocomplete="current-password" required>
+
+            <button type="submit">Login</button>
+            <p id="loginMessage" class="message" aria-live="polite"></p>
+        </form>
+        <p class="login-help"></p>
     </div>
 
-    <!-- Main Content Area -->
-    <div id="mainContent" style="display:none;">
-        <!-- Tabs for Navigation -->
-        <div class="tab">
-            <button onclick="openTab(event, 'Inventory')">Inventory</button>
-            <button onclick="openTab(event, 'ProductList')">Product List</button>
-            <button onclick="openTab(event, 'Billing')">Billing</button>
-            <button onclick="exportToExcel()">Export Data</button>
+    <main id="mainContent" class="panel" hidden>
+        <div class="app-header">
+            <div>
+                <h1>StockSphere</h1>
+                <p id="userRole" class="muted"></p>
+            </div>
+            <button type="button" class="secondary-button compact-button" onclick="logout()">Logout</button>
         </div>
 
-        <!-- Inventory Tab -->
-        <div id="Inventory" class="tabcontent" style="display:none;">
+        <nav class="tab" aria-label="Main navigation">
+            <button type="button" class="tablinks admin-only" onclick="openTab(event, 'Inventory')">Inventory</button>
+            <button type="button" class="tablinks admin-only" onclick="openTab(event, 'ProductList')">Product List</button>
+            <button type="button" class="tablinks" onclick="openTab(event, 'Billing')">Billing</button>
+            <button type="button" class="tablinks" onclick="exportToExcel()">Export Data</button>
+        </nav>
+
+        <section id="alerts" class="alerts" hidden aria-live="polite"></section>
+
+        <section id="Inventory" class="tabcontent">
             <h2>Manage Inventory</h2>
-            <input type="text" id="productName" placeholder="Product Name">
-            <input type="number" id="productPrice" placeholder="Price">
-            <input type="number" id="productQuantity" placeholder="Quantity">
-            <input type="date" id="expiryDate" placeholder="Expiry Date">
-            <button onclick="addProduct()">Add Product</button>
-        </div>
+            <div class="form-grid">
+                <div>
+                    <label for="productName">Product name</label>
+                    <input type="text" id="productName" placeholder="Product Name">
+                </div>
+                <div>
+                    <label for="productPrice">Price</label>
+                    <input type="number" id="productPrice" placeholder="Price" min="0.01" step="0.01">
+                </div>
+                <div>
+                    <label for="productQuantity">Quantity</label>
+                    <input type="number" id="productQuantity" placeholder="Quantity" min="1" step="1">
+                </div>
+                <div>
+                    <label for="expiryDate">Expiry date</label>
+                    <input type="date" id="expiryDate">
+                </div>
+            </div>
+            <button type="button" onclick="addProduct()">Add Product</button>
+        </section>
 
-        <!-- Product List Tab -->
-        <div id="ProductList" class="tabcontent" style="display:none;">
+        <section id="ProductList" class="tabcontent">
             <h2>Product List</h2>
-            <input type="text" id="searchProduct" placeholder="Search" oninput="searchProducts()">
-            <table id="productTable">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Expiry Date</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
+            <label for="searchProduct">Search products</label>
+            <input type="search" id="searchProduct" placeholder="Search by product name" oninput="searchProducts()">
+            <div class="table-wrapper">
+                <table id="productTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Expiry Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <p id="emptyProductMessage" class="muted" hidden>No products found.</p>
+        </section>
 
-        <!-- Billing Tab -->
-        <div id="Billing" class="tabcontent" style="display:none;">
+        <section id="Billing" class="tabcontent">
             <h2>Billing</h2>
             <h3>Client Information</h3>
-            <input type="text" id="clientName" placeholder="Client Name">
-            <input type="text" id="clientAddress" placeholder="Client Address">
-            <input type="text" id="clientContact" placeholder="Client Contact Info">
-            <select id="billingProductDropdown">
-                <option value="" disabled selected>Select Product</option>
-            </select>
-            <input type="number" id="billingQuantity" placeholder="Quantity">
-            <button onclick="addToBill()">Add to Bill</button>
+            <div class="form-grid">
+                <div>
+                    <label for="clientName">Client name</label>
+                    <input type="text" id="clientName" placeholder="Client Name">
+                </div>
+                <div>
+                    <label for="clientAddress">Client address</label>
+                    <input type="text" id="clientAddress" placeholder="Client Address">
+                </div>
+                <div>
+                    <label for="clientContact">Client contact</label>
+                    <input type="text" id="clientContact" placeholder="Client Contact Info">
+                </div>
+            </div>
+
+            <h3>Add Product</h3>
+            <div class="billing-row">
+                <select id="billingProductDropdown" aria-label="Select product">
+                    <option value="" disabled selected>Select a Product</option>
+                </select>
+                <input type="number" id="billingQuantity" placeholder="Quantity" min="1" step="1" aria-label="Billing quantity">
+                <button type="button" onclick="addToBill()">Add to Bill</button>
+            </div>
+
             <h3>Bill</h3>
-            <ul id="billList"></ul>
-            <p>Subtotal: ₹<span id="subtotalAmount">0</span></p>
-            <p>Taxes: ₹<span id="taxAmount">0</span></p>
-            <p>Total: ₹<span id="totalAmount">0</span></p>
-            <button onclick="generateInvoice()">Generate Invoice</button>
-            <div id="invoiceSection" style="display: none;">
+            <ul id="billList" class="bill-list"></ul>
+            <div class="bill-summary">
+                <p>Subtotal: <strong>₹<span id="subtotalAmount">0.00</span></strong></p>
+                <p>Taxes (18% GST): <strong>₹<span id="taxAmount">0.00</span></strong></p>
+                <p class="grand-total">Total: ₹<span id="totalAmount">0.00</span></p>
+            </div>
+            <button type="button" onclick="generateInvoice()">Generate Invoice</button>
+
+            <section id="invoiceSection" hidden>
                 <h3>Generated Invoice</h3>
                 <div id="invoiceContent"></div>
-                <button onclick="printInvoice()">Print Invoice</button>
-            </div>
-        </div>
-        
-    </div>
-    
-    <!-- Script -->
+                <button type="button" onclick="printInvoice()">Print Invoice</button>
+            </section>
+        </section>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
