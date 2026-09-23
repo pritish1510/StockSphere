@@ -435,7 +435,7 @@ function generateInvoice() {
         <div class="invoice-heading">
             <div>
                 <h2>StockSphere</h2>
-                <p>Dronacharya Group of Institutions</p>
+                <p>Bhagwan Parshuram Institute Of Technology</p>
                 <p>Contact: 99xxxxxx09 · email@StockSphere.com</p>
             </div>
             <div>
